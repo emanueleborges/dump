@@ -1,0 +1,120 @@
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>TELA - DQC</title>
+  <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+  <div class="container">
+
+    <h3>Lista de Produtos</h3>
+		<button class="btn btn-success" data-toggle="modal" data-target="#myModalAdd" onclick="$('#form-dqc').action='/dqc8/salvar';">Adicionar</button>
+    <table class="table table-striped" id="mytable">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>model</th>
+        </tr>
+      </thead>
+      <tbody>
+         <% for (var cont = 0; cont < results.length; cont++) { %>
+        <tr>
+          <td><%=results[cont]._id %></td>
+          <td><%=results[cont].model %></td>
+          <td>
+            <a href="javascript:void(0);" class="btn btn-sm btn-info edit" data-toggle="modal" data-target="#myModalAdd" data-model="<%=results[cont].model %>" " onclick="$('#form-dqc').attr('action', '/dqc8/salvar?id=<%=results[cont]._id %>');">Editar</a>
+            <a href="" class="btn btn-sm btn-danger delete" data-toggle="modal" data-target="#DeleteModal" onclick="$('#form-deletar-dqc').attr('action', '/dqc8/deletar?id=<%=results[cont]._id %>');">Deletar</a>
+          </td>
+        </tr>
+
+        <% } %>
+        
+      </tbody>
+    </table>
+  </div>
+
+	<!-- Add New Product Modal-->
+	  <form action="/dqc8/salvar" id="form-dqc" method="post">
+        <div class="modal fade" id="myModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+           <div class="modal-content">
+             <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Adicionar Produto</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+             <div class="modal-body">
+             
+              <div class="form-group">
+                model: <input type="text" name="model" class="form-control model" placeholder="model" required>
+              </div>
+             
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+               <button type="submit" class="btn btn-primary">Salvar</button>
+             </div>
+           </div>
+         </div>
+        </div>
+	 </form>
+
+	 <!-- Delete Product Modal-->
+ 	  <form id="form-deletar-dqc" action="/dqc8" method="post">
+ 	     <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ 	        <div class="modal-dialog">
+ 	           <div class="modal-content">
+ 	               <div class="modal-header">
+									 	<h5 class="modal-title" id="myModalLabel">Deletar Produto</h5>
+ 	                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+ 	               </div>
+ 	               <div class="modal-body">
+												 <strong>Deletar este Produto?</strong>
+ 	               </div>
+ 	               <div class="modal-footer">
+									 		<input type="hidden" name="id" class="form-control id2" required>
+ 	                   	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+ 	                  	<button type="submit" class="btn btn-success">Delete</button>
+ 	               </div>
+ 	      			</div>
+ 	        </div>
+ 	     </div>
+ 	 </form>
+
+<script src="/assets/js/jquery-3.3.1.js"></script>
+<script src="/assets/js/bootstrap.js"></script>
+<script>
+    $(document).ready(function(){
+			//showing data to modal for edit record
+      $('#mytable').on('click','.edit',function(){
+        var id = $(this).data('id');
+        var model           = $(this).data('model');
+        var fat_part_no     = $(this).data('fat_part_no');
+        var parts_no        = $(this).data('parts_no');
+        var unt_usg         = $(this).data('unt_usg');
+        var description     = $(this).data('description');
+        var ref_designator  = $(this).data('ref_designator');
+        var update_dt       = $(this).data('update_dt');
+        var create_dt       = $(this).data('create_dt');
+
+        $('#EditModal').modal('show');
+        $('.id').val(id);
+        $('.model').val(model);
+
+        $('.fat_part_no').val(fat_part_no);
+        $('.parts_no').val(parts_no);
+        $('.unt_usg').val(unt_usg);
+        $('.description').val(description);
+        $('.ref_designator').val(ref_designator);
+        $('.update_dt').val(update_dt);
+        $('.create_dt').val(create_dt);
+        
+      });
+			//showing modal for delete record
+			
+
+    });
+</script>
+</body>
+</html>

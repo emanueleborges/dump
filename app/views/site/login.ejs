@@ -1,0 +1,22 @@
+<h1>Login
+</h1>
+
+<% if (typeof(info) !== "undefined") { %>
+    <p class="alert alert-info"><%=info%></p>
+<% } %>
+
+<form action="/logon" method="POST">
+    <div class="form-group">
+        <label for="tx_cpf">CPF</label>
+        <input type="text" class="form-control" id="tx_cpf" name="cpf" aria-describedby="cpfHelp" placeholder="CPF">
+        <small id="nomeHelp" class="form-text text-muted">Somente números</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Logon</button>
+</form>
+
+<script>
+    $(document).ready(function () { 
+        $("#tx_cpf").mask('000.000.000-00', {reverse: true});
+    });
+</script>
