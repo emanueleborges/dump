@@ -7,12 +7,11 @@
 <body>
   <div class="container">
 
-    <h3>Lista de Produtos</h3>
+    <h3>Lista de Produtos - DQC841</h3>
 		<button class="btn btn-success" data-toggle="modal" data-target="#myModalAdd" onclick="$('#form-dqc841').action='/dqc841/salvar';">Adicionar</button>
     <table class="table table-striped" id="mytable">
       <thead>
         <tr>
-          <th>id</th>
           <th>fat_part_no</th>
           <th>parts_no</th>
           <th>unt_usg</th>
@@ -25,7 +24,6 @@
       <tbody>
          <% for (var cont = 0; cont < results.length; cont++) { %>
         <tr>
-          <td><%=results[cont]._id %></td>
           <td><%=results[cont].fat_part_no %></td>
           <td><%=results[cont].parts_no %></td>
           <td><%=results[cont].unt_usg %></td>
@@ -33,6 +31,7 @@
           <td><%=results[cont].ref_designator %></td>
           <td><%=results[cont].update_dt %></td>
           <td><%=results[cont].create_dt %></td>
+
           <td>
             <a href="javascript:void(0);" class="btn btn-sm btn-info edit" data-toggle="modal" data-target="#myModalAdd" data-fat_part_no="<%=results[cont].fat_part_no %>" data-parts_no="<%=results[cont].parts_no %>" data-unt_usg="<%=results[cont].unt_usg %>" data-description="<%=results[cont].description %>" data-ref_designator="<%=results[cont].ref_designator %>" onclick="$('#form-dqc841').attr('action', '/dqc841/salvar?id=<%=results[cont]._id %>');">Editar</a>
             <a href="" class="btn btn-sm btn-danger delete" data-toggle="modal" data-target="#DeleteModal" onclick="$('#form-deletar-dqc841').attr('action', '/dqc841/deletar?id=<%=results[cont]._id %>');">Deletar</a>
@@ -43,6 +42,10 @@
         
       </tbody>
     </table>
+    <div >
+    
+   
+
   </div>
 
 	<!-- Add New Product Modal-->
@@ -59,8 +62,13 @@
              <div class="modal-body">
          
               <div class="form-group">
-                  fat_part_no: <input type="text" name="fat_part_no" class="form-control fat_part_no" placeholder="fat_part_no" required>
-              </div>
+                  fat_part_no: <select id="fat_part_no" name="fat_part_no" class="form-control fat_part_no" > 
+                    <% for (var i=0; i<resultss.length; i++) { %>
+                      <option value="<%=resultss[i].fat_part_no	 %>"> <%=resultss[i].fat_part_no %> </option>
+                    <% } %>
+                    </select>
+              
+                </div>
               <div class="form-group">
                   parts_no: <input type="text" name="parts_no" class="form-control parts_no" placeholder="parts_no" required>
               </div>
@@ -106,6 +114,8 @@
  	     </div>
  	 </form>
 
+
+
 <script src="/assets/js/jquery-3.3.1.js"></script>
 <script src="/assets/js/bootstrap.js"></script>
 <script>
@@ -132,8 +142,14 @@
         $('.create_dt').val(create_dt);
         
       });
-			//showing modal for delete record
-			
+
+      $('#mytable').on('click','.excel',function(){
+        alert ('xxxxxxxxxxx');
+
+        $('#excel').excel('show');
+        
+      });
+   	
 
     });
 </script>

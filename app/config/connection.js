@@ -9,8 +9,14 @@ module.exports = {
     MongoClient.connect( url,  { useNewUrlParser: true, server: { reconnectInterval: 10000, reconnectTries: 5 } }, function( err, client ) {
         if (err == null) {
             _db  = client.db('dump');
-            return callback( 'Database connection stablished' );
+            return callback( 'Database conectada MongoDB' );
         } else {
+           _db.createCollection("dump", function(err, res) {
+            if (err) throw err;
+            console.log("DataBase criada!");
+            _db.close();
+          });
+
             return callback( err );
         }
     } );
@@ -19,4 +25,6 @@ module.exports = {
   getDb: function() {
     return _db;
   }
+
+  
 };

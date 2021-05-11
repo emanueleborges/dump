@@ -4,10 +4,10 @@
 	<title>TELA - DQC</title>
   <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
 </head>
-<body>
+<body>  
   <div class="container">
 
-    <h3>Lista de Produtos</h3>
+    <h3>Lista de Produtos - DQC8</h3>
 		<button class="btn btn-success" data-toggle="modal" data-target="#myModalAdd" onclick="$('#form-dqc').action='/dqc8/salvar';">Adicionar</button>
     <table class="table table-striped" id="mytable">
       <thead>
@@ -26,12 +26,15 @@
             <a href="" class="btn btn-sm btn-danger delete" data-toggle="modal" data-target="#DeleteModal" onclick="$('#form-deletar-dqc').attr('action', '/dqc8/deletar?id=<%=results[cont]._id %>');">Deletar</a>
           </td>
         </tr>
-
         <% } %>
-        
-      </tbody>
+        </tbody>
     </table>
   </div>
+
+  <form action="/dqc8/" method="get">
+      <input class="form-control pesquisar tt-query" type="text" name="search" placeholder="pesquisar">
+      <input class="btn btn-primary" type="submit" value="Submit">
+  </form>
 
 	<!-- Add New Product Modal-->
 	  <form action="/dqc8/salvar" id="form-dqc" method="post">
@@ -101,7 +104,6 @@
         $('#EditModal').modal('show');
         $('.id').val(id);
         $('.model').val(model);
-
         $('.fat_part_no').val(fat_part_no);
         $('.parts_no').val(parts_no);
         $('.unt_usg').val(unt_usg);

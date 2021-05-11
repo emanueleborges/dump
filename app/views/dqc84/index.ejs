@@ -6,14 +6,11 @@
 </head>
 <body>
   <div class="container">
-
-    <h3>Lista de Produtos</h3>
-		<button class="btn btn-success" data-toggle="modal" data-target="#myModalAdd" onclick="$('#form-dqc84').action='/dqc84/salvar';">Adicionar</button>
+    <h3>Lista de Produtos - DQC84</h3>
+		<button id="consultar" name="consultar" class="btn btn-success" data-toggle="modal" data-target="#myModalAdd" onclick="$('#form-dqc84').action='/dqc84/salvar';">Adicionar</button>
     <table class="table table-striped" id="mytable">
       <thead>
         <tr>
-
-          <th>id</th>
           <th>fat_part_no</th>
           <th>model</th>
           <th>total_location</th>
@@ -24,7 +21,6 @@
       <tbody>
          <% for (var cont = 0; cont < results.length; cont++) { %>
         <tr>
-          <td><%=results[cont]._id %></td>
           <td><%=results[cont].fat_part_no %></td>
           <td><%=results[cont].model %></td>
           <td><%=results[cont].total_location %></td>
@@ -35,9 +31,7 @@
             <a href="" class="btn btn-sm btn-danger delete" data-toggle="modal" data-target="#DeleteModal" onclick="$('#form-deletar-dqc84').attr('action', '/dqc84/deletar?id=<%=results[cont]._id %>');">Deletar</a>
           </td>
         </tr>
-
         <% } %>
-        
       </tbody>
     </table>
   </div>
@@ -54,16 +48,23 @@
                </button>
              </div>
              <div class="modal-body">
-              <div class="form-group">
-                  fat_part_no: <input type="text" name="fat_part_no" class="form-control fat_part_no" placeholder="fat_part_no" required>
-              </div>
-              <div class="form-group">
-                  parts_no: <input type="text" name="model" class="form-control model" placeholder="model" required>
-              </div>
-              <div class="form-group">
-                  unt_usg: <input type="text" name="total_location" class="form-control total_location" placeholder="total_location" required>
-              </div>
-              
+                <div class="form-group">
+                    fat_part_no: <input type="text" name="fat_part_no" class="form-control fat_part_no" placeholder="fat_part_no" required>
+                </div>
+                <div class="form-group">
+                  Model: 
+                  <select id="model" name="model" class="form-control mode" > 
+                  <% for (var i=0; i<resultss.length; i++) { %>
+                    <option value="<%=resultss[i].model %>"> <%=resultss[i].model %> </option>
+                  <% } %>
+                  </select>
+                </div>
+                <div class="form-group">
+                  parts_no: <input type="text" name="parts_no" class="form-control parts_no" placeholder="parts_no" required>
+                </div>
+                <div class="form-group">
+                    unt_usg: <input type="text" name="total_location" class="form-control total_location" placeholder="total_location" required>
+                </div>
              </div>
              <div class="modal-footer">
                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -100,19 +101,22 @@
 <script src="/assets/js/bootstrap.js"></script>
 <script>
     $(document).ready(function(){
+     
 			//showing data to modal for edit record
       $('#mytable').on('click','.edit',function(){
         var id = $(this).data('id');
-        var fat_part_no = $(this).data('fat_part_no');
-        var parts_no = $(this).data('parts_no');
-        var unt_usg = $(this).data('unt_usg');
-        var description = $(this).data('description');
-        var ref_designator = $(this).data('ref_designator');
-        var update_dt = $(this).data('update_dt');
-        var create_dt = $(this).data('create_dt');
+        var model           = $(this).data('model');
+        var fat_part_no     = $(this).data('fat_part_no');
+        var parts_no        = $(this).data('parts_no');
+        var unt_usg         = $(this).data('unt_usg');
+        var description     = $(this).data('description');
+        var ref_designator  = $(this).data('ref_designator');
+        var update_dt       = $(this).data('update_dt');
+        var create_dt       = $(this).data('create_dt');
 
         $('#EditModal').modal('show');
         $('.id').val(id);
+        $('.model').val(model);
         $('.fat_part_no').val(fat_part_no);
         $('.parts_no').val(parts_no);
         $('.unt_usg').val(unt_usg);
@@ -123,9 +127,11 @@
         
       });
 			//showing modal for delete record
-			
+    
 
     });
 </script>
+
+
 </body>
 </html>

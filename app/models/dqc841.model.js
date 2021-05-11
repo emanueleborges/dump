@@ -23,7 +23,6 @@ class Dqc841Model {
             })
         })
     }
-
     async update(filter = {}, data = {}) {
         data["update_dt"] = new Date()
 

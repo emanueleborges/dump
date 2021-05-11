@@ -11,9 +11,21 @@ class Dqc8Model {
         })
     }
 
+    async pesquisar(filter = {}) {
+        return new Promise((resolve, reject) => {
+            var DqcmodelObj = connection.getDb().collection('Dqcmodel')
+            Promise.all([DqcmodelObj]).then((result) => {
+                var DqcmodelArray = result[0].find(filter).sort({ id: 1 }).toArray()
+                Promise.all([DqcmodelArray]).then((result) => resolve(result[0]))
+            })
+        })
+    }
+
+
+    
+	
     async insert(data = {}) {
         data["create_dt"] = new Date()
-
         return new Promise((resolve, reject) => {
             const DqcmodelObj = connection.getDb().collection('Dqcmodel')
             Promise.all([DqcmodelObj]).then((result) => {
@@ -26,7 +38,6 @@ class Dqc8Model {
 
     async update(filter = {}, data = {}) {
         data["update_dt"] = new Date()
-
         return new Promise((resolve, reject) => {
             const DqcmodelObj = connection.getDb().collection('Dqcmodel')
             Promise.all([DqcmodelObj]).then((result) => {
@@ -46,7 +57,6 @@ class Dqc8Model {
             })
         })
     }
-
 }
 
 module.exports = new Dqc8Model()

@@ -46,7 +46,7 @@ class Dqc84Model {
             })
         })
     }
-
 }
+
 
 module.exports = new Dqc84Model()
