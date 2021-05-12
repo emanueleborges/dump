@@ -12,14 +12,14 @@
     <table class="table table-striped" id="mytable">
       <thead>
         <tr>
-          <th>id</th>
           <th>model</th>
+          <th></th>
+
         </tr>
       </thead>
       <tbody>
          <% for (var cont = 0; cont < results.length; cont++) { %>
         <tr>
-          <td><%=results[cont]._id %></td>
           <td><%=results[cont].model %></td>
           <td>
             <a href="javascript:void(0);" class="btn btn-sm btn-info edit" data-toggle="modal" data-target="#myModalAdd" data-model="<%=results[cont].model %>" " onclick="$('#form-dqc').attr('action', '/dqc8/salvar?id=<%=results[cont]._id %>');">Editar</a>
