@@ -1,9 +1,9 @@
-const bodyParser = require('body-parser')
-const express = require('express')
-const expressLayouts = require('express-ejs-layouts')
+const bodyParser      = require('body-parser')
+const express         = require('express')
+const expressLayouts  = require('express-ejs-layouts')
 //const session = require('express-session')
-const path = require('path')
-const exceljs = require('exceljs')
+const path            = require('path')
+const exceljs         = require('exceljs')
 
 
 const app = express()
@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', require('./app/config/routes'))
 
-const port = process.env.PORT || 8000
+const port = process.env.PORT || 8080
 
 app.listen(port, () => {
   console.log('===========================================')
