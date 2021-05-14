@@ -26,8 +26,8 @@
           <td><%=results[cont].fat_part_no %></td>
           <td><%=results[cont].model %></td>
           <td><%=results[cont].total_location %></td>
-          <td><%=results[cont].update_dt.toISOString().replace(/T.*/,'').split('-').reverse().join('/') %></td>
-          <td><%=results[cont].create_dt.toISOString().replace(/T.*/,'').split('-').reverse().join('/') %></td>
+          <td><%=results[cont].update_dt %></td>
+          <td><%=results[cont].create_dt %></td>
           
           <td>
             <a href="javascript:void(0);" class="btn btn-sm btn-info edit" data-toggle="modal" data-target="#myModalAdd" data-fat_part_no="<%=results[cont].fat_part_no %>" data-model="<%=results[cont].model %>" data-total_location="<%=results[cont].total_location %>" " onclick="$('#form-dqc84').attr('action', '/dqc84/salvar?id=<%=results[cont]._id %>');">Editar</a>
