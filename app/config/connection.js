@@ -1,7 +1,7 @@
 const MongoClient = require( 'mongodb' ).MongoClient;
 //const url = "mongodb://localhost:27017/dump?readPreference=primary&appname=MongoDB%20Compass&ssl=false";
 
-const url = "mongodb+srv://admin:Emanuel@2015@cluster0.aowla.mongodb.net/test?retryWrites=true";
+const url = "mongodb+srv://admin:SzYHCHkAoQCiOkVh@cluster0.aowla.mongodb.net/test?retryWrites=true";
 
 
 var _db;
