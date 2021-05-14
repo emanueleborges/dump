@@ -3,8 +3,9 @@ const dqc8Model = require('../models/dqc8.model')
 
 class dqc8Controller {
     async index(req, res) {
+        const resposta2 = req.query
+        console.log('recebendo parametro req.query: ', resposta2)
         if (req.query.search) {
-
             dqc8Model.index({
                 model: {
                     $regex: ".*" + req.query.search + ".*"

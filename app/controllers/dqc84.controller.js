@@ -4,7 +4,8 @@ const dqc8Model = require('../models/dqc8.model')
 
 
 class dqc84Controller {
-    async index(req, res) {
+
+    async index2(req, res) {
         var _dqc84Model = dqc84Model.index()
         var _dqc8Model = dqc8Model.index()
         Promise.all([_dqc84Model, _dqc8Model]).then((r) => {
@@ -13,6 +14,35 @@ class dqc84Controller {
             res.render('dqc84/index', {results: dqc84Model, resultss: dqc8Model})
         })
     }   
+
+    async index(req, res) {
+        if (req.query.search){
+            var _dqc84Model = dqc84Model.index({
+                model: {
+                    $regex: ".*" + req.query.search + ".*"
+                }
+            })
+
+            var _dqc8Model = dqc8Model.index()
+            Promise.all([_dqc84Model, _dqc8Model]).then((r) => {
+                var dqc84Model = r[0]
+                var dqc8Model = r[1]
+                res.render('dqc84/index', {results: dqc84Model, resultss: dqc8Model})
+            })
+        } else {
+            var _dqc84Model = dqc84Model.index()
+            var _dqc8Model = dqc8Model.index()
+            Promise.all([_dqc84Model, _dqc8Model]).then((r) => {
+            var dqc84Model = r[0]
+            var dqc8Model = r[1]
+            res.render('dqc84/index', {results: dqc84Model, resultss: dqc8Model})
+        })
+
+        }
+
+    }   
+
+
      
     async salvar(req, res) {
         if (req.query.id)
