@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'))
 app.use(express.static(__dirname + '/public')); 
 app.use("/public", express.static(path.join(__dirname, 'public')));
+
 app.use('/', require('./app/config/routes'))
 
 const port = process.env.PORT || 8080
