@@ -1,8 +1,9 @@
-<html lang="en">
+<!DOCTYPE html>  
+<html lang="pt-br">
 <head>
 	<meta charset="utf-8">
 	<title>TELA - DQC841</title>
-  <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="../../../public/css/bootstrap.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
   <div class="container">
@@ -31,6 +32,7 @@
           <td><%=results[cont].unt_usg %></td>
           <td><%=results[cont].description %></td>
           <td><%=results[cont].ref_designator %></td>
+          
           <td><%=results[cont].update_dt %></td>
           <td><%=results[cont].create_dt %></td>
 
@@ -45,10 +47,12 @@
       </tbody>
     </table>
     <div >
-    
-   
-
   </div>
+
+  <form action="/dqc841/" method="get">
+    <input class="form-control pesquisar tt-query" type="text" name="search" placeholder="pesquisar por fat_part_no">
+    <input class="btn btn-primary" type="submit" value="Submit">
+  </form>
 
 	<!-- Add New Product Modal-->
 	  <form action="/dqc841/salvar" id="form-dqc841" method="post">
@@ -115,11 +119,8 @@
  	        </div>
  	     </div>
  	 </form>
-
-
-
-<script src="/assets/js/jquery-3.3.1.js"></script>
-<script src="/assets/js/bootstrap.js"></script>
+<script src="../../../public/js/jquery-3.3.1.js"></script>
+<script src="../../../public/js/bootstrap.js"></script>
 <script>
     $(document).ready(function(){
 			//showing data to modal for edit record
@@ -142,17 +143,8 @@
         $('.ref_designator').val(ref_designator);
         $('.update_dt').val(update_dt);
         $('.create_dt').val(create_dt);
-        
+
       });
-
-      $('#mytable').on('click','.excel',function(){
-        alert ('xxxxxxxxxxx');
-
-        $('#excel').excel('show');
-        
-      });
-   	
-
     });
 </script>
 </body>

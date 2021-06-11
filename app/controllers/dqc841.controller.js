@@ -4,7 +4,7 @@ const dqc84Model = require('../models/dqc84.model')
 
 class dqc841Controller {
 
-    async index(req, res) {
+    async index2(req, res) {
 
         var _dqc841Model = dqc841Model.index()
         var _dqc84Model = dqc84Model.index()
@@ -16,6 +16,34 @@ class dqc841Controller {
             res.render('dqc841/index', {results: dqc841Model, resultss: dqc84Model})
         })
     }   
+    async index(req, res) {
+
+    if (req.query.search){
+        var _dqc841Model = dqc841Model.index({
+            fat_part_no: {
+                $regex: ".*" + req.query.search + ".*"
+            }
+        })
+
+        var _dqc84Model = dqc84Model.index()
+        Promise.all([_dqc841Model, _dqc84Model]).then((r) => {
+            var dqc841Model = r[0]
+            var dqc84Model = r[1]
+            res.render('dqc841/index', {results: dqc841Model, resultss: dqc84Model})
+        })
+    } else {
+        var _dqc841Model = dqc841Model.index()
+        var _dqc84Model = dqc84Model.index()
+        Promise.all([_dqc841Model, _dqc84Model]).then((r) => {
+        var dqc841Model = r[0]
+        var dqc84Model = r[1]
+        res.render('dqc841/index', {results: dqc841Model, resultss: dqc84Model})
+    })
+
+    }
+
+}   
+
 
 
 

@@ -1,9 +1,9 @@
-<html lang="en">
+<!DOCTYPE html>  
+<html lang="pt-br">
 <head>
 	<meta charset="utf-8">
 	<title>TELA - DQC84</title>
-  <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
-</head>
+  <link href="../../../public/css/bootstrap.css" rel="stylesheet" type="text/css"/></head>
 <body>
   <div class="container">
     <h3>Lista de Produtos - DQC84</h3>
@@ -28,6 +28,7 @@
           <td><%=results[cont].total_location %></td>
           <td><%=results[cont].update_dt %></td>
           <td><%=results[cont].create_dt %></td>
+          
           <td>
             <a href="javascript:void(0);" class="btn btn-sm btn-info edit" data-toggle="modal" data-target="#myModalAdd" data-fat_part_no="<%=results[cont].fat_part_no %>" data-model="<%=results[cont].model %>" data-total_location="<%=results[cont].total_location %>" " onclick="$('#form-dqc84').attr('action', '/dqc84/salvar?id=<%=results[cont]._id %>');">Editar</a>
             <a href="" class="btn btn-sm btn-danger delete" data-toggle="modal" data-target="#DeleteModal" onclick="$('#form-deletar-dqc84').attr('action', '/dqc84/deletar?id=<%=results[cont]._id %>');">Deletar</a>
@@ -37,6 +38,11 @@
       </tbody>
     </table>
   </div>
+
+  <form action="/dqc84/" method="get">
+    <input class="form-control pesquisar tt-query" type="text" name="search" placeholder="pesquisar por model">
+    <input class="btn btn-primary" type="submit" value="Submit">
+</form>
 
 	<!-- Add New Product Modal-->
 	  <form action="/dqc84/salvar" id="form-dqc84" method="post">
@@ -61,11 +67,9 @@
                   <% } %>
                   </select>
                 </div>
+               
                 <div class="form-group">
-                  parts_no: <input type="text" name="parts_no" class="form-control parts_no" placeholder="parts_no" required>
-                </div>
-                <div class="form-group">
-                    unt_usg: <input type="text" name="total_location" class="form-control total_location" placeholder="total_location" required>
+                  total_location: <input type="text" name="total_location" class="form-control total_location" placeholder="total_location" required>
                 </div>
              </div>
              <div class="modal-footer">
@@ -99,16 +103,18 @@
  	     </div>
  	 </form>
 
-<script src="/assets/js/jquery-3.3.1.js"></script>
-<script src="/assets/js/bootstrap.js"></script>
+<script src="../../../public/js/jquery-3.3.1.js"></script>
+<script src="../../../public/js/bootstrap.js"></script>
 <script>
     $(document).ready(function(){
      
 			//showing data to modal for edit record
       $('#mytable').on('click','.edit',function(){
         var id = $(this).data('id');
+        
         var model           = $(this).data('model');
         var fat_part_no     = $(this).data('fat_part_no');
+        var total_location  = $(this).data('total_location');
         var parts_no        = $(this).data('parts_no');
         var unt_usg         = $(this).data('unt_usg');
         var description     = $(this).data('description');
@@ -120,6 +126,7 @@
         $('.id').val(id);
         $('.model').val(model);
         $('.fat_part_no').val(fat_part_no);
+        $('.total_location').val(total_location);
         $('.parts_no').val(parts_no);
         $('.unt_usg').val(unt_usg);
         $('.description').val(description);
