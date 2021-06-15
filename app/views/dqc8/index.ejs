@@ -9,14 +9,23 @@
   <div class="container">
 
     <h3>Lista de Produtos - DQC8</h3>
-		<button class="btn btn-success" data-toggle="modal" data-target="#myModalAdd" onclick="$('#form-dqc').action='/dqc8/salvar';">Adicionar</button>
-    <table class="table table-striped" id="mytable">
+      <table class="table table-striped" id="mytable">
+      <th class="table-responsive border-left">
+        <button class="btn btn-success my-2 my-sm-0" data-toggle="modal" data-target="#myModalAdd" onclick="$('#form-dqc').action='/dqc8/salvar';">Adicionar</button>
+     </th>
+      <th class="table-responsive border-right">
+        <form action="/dqc8/" method="get">
+          <input class="form-control pesquisar tt-query" type="text" name="search" size="20" placeholder="pesquisar model">
+          <input class="btn btn-primary" type="submit" value="Pesquisar">
+      </form>
+      </th>
+    </table>
+   <table class="table table-striped" id="mytable">
       <thead>
         <tr>
           <th>model</th>
           <th></th>
-
-        </tr>
+       </tr>
       </thead>
       <tbody>
          <% for (var cont = 0; cont < results.length; cont++) { %>
@@ -32,10 +41,7 @@
     </table>
   </div>
 
-  <form action="/dqc8/" method="get">
-      <input class="form-control pesquisar tt-query" type="text" name="search" placeholder="pesquisar model">
-      <input class="btn btn-primary" type="submit" value="Submit">
-  </form>
+  
 
 	<!-- Add New Product Modal-->
 	  <form action="/dqc8/salvar" id="form-dqc" method="post">

@@ -9,7 +9,22 @@
   <div class="container">
 
     <h3>Lista de Produtos - DQC841</h3>
-		<button class="btn btn-success" data-toggle="modal" data-target="#myModalAdd" onclick="$('#form-dqc841').action='/dqc841/salvar';">Adicionar</button>
+    
+    <table class="table table-striped" id="mytable">
+      <th class="table-responsive border-left">
+        <button class="btn btn-success" data-toggle="modal" data-target="#myModalAdd" onclick="$('#form-dqc841').action='/dqc841/salvar';">Adicionar</button>
+      </th>
+      <th class="table-responsive border-right">
+        <form action="/dqc841/" method="get">
+          <input class="form-control pesquisar tt-query" type="text" name="search" placeholder="pesquisar por fat_part_no">
+          <input class="btn btn-primary" type="submit" value="Pesquisar">
+        </form>
+      </th>
+    </table>
+    
+    
+    
+    
     <table class="table table-striped" id="mytable">
       <thead>
         <tr>
@@ -49,10 +64,7 @@
     <div >
   </div>
 
-  <form action="/dqc841/" method="get">
-    <input class="form-control pesquisar tt-query" type="text" name="search" placeholder="pesquisar por fat_part_no">
-    <input class="btn btn-primary" type="submit" value="Submit">
-  </form>
+ 
 
 	<!-- Add New Product Modal-->
 	  <form action="/dqc841/salvar" id="form-dqc841" method="post">

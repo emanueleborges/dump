@@ -7,7 +7,17 @@
 <body>
   <div class="container">
     <h3>Lista de Produtos - DQC84</h3>
-		<button id="consultar" name="consultar" class="btn btn-success" data-toggle="modal" data-target="#myModalAdd" onclick="$('#form-dqc84').action='/dqc84/salvar';">Adicionar</button>
+     <table class="table table-striped" id="mytable">
+      <th class="table-responsive border-left">
+        <button id="consultar" name="consultar" class="btn btn-success" data-toggle="modal" data-target="#myModalAdd" onclick="$('#form-dqc84').action='/dqc84/salvar';">Adicionar</button>
+      </th>
+      <th class="table-responsive border-right">
+        <form action="/dqc84/" method="get">
+          <input class="form-control pesquisar tt-query" type="text" name="search" placeholder="pesquisar por model">
+          <input class="btn btn-primary" type="submit" value="Pesquisar">
+      </form>
+      </th>
+    </table>
     <table class="table table-striped" id="mytable">
       <thead>
         <tr>
@@ -39,10 +49,7 @@
     </table>
   </div>
 
-  <form action="/dqc84/" method="get">
-    <input class="form-control pesquisar tt-query" type="text" name="search" placeholder="pesquisar por model">
-    <input class="btn btn-primary" type="submit" value="Submit">
-</form>
+
 
 	<!-- Add New Product Modal-->
 	  <form action="/dqc84/salvar" id="form-dqc84" method="post">
