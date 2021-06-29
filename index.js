@@ -5,10 +5,13 @@ const expressLayouts  = require('express-ejs-layouts')
 const path            = require('path')
 const exceljs         = require('exceljs')
 const dotenv          = require('dotenv');
+const wordpress       = require('wordpress');
 
 const app             = express()
 const connection      = require('./app/config/connection')
+
 connection.connectToServer(console.log)
+
 
 app.set('view engine', 'ejs')
 app.use(expressLayouts)
@@ -18,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'))
 app.use(express.static(__dirname + '/public')); 
 app.use("/public", express.static(path.join(__dirname, 'public')));
+
 
 app.use('/', require('./app/config/routes'))
 
@@ -31,3 +35,4 @@ app.listen(port, () => {
 })
 
 
+console.log (path.join(__dirname, 'public'));
