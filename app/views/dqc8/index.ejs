@@ -3,7 +3,10 @@
 <head>
 	<meta charset="utf-8">
 	<title>TELA - DQC</title>
-  <link href="../../../public/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.25/js/dataTables.jqueryui.min.js"></script>
 </head>
 <body>  
   <div class="container">
@@ -20,11 +23,11 @@
       </form>
       </th>
     </table>
-   <table class="table table-striped" id="mytable">
+    <table id="example" class="display" style="width:100%">
       <thead>
         <tr>
           <th>model</th>
-          <th></th>
+          <th>acao</th>
        </tr>
       </thead>
       <tbody>
@@ -80,25 +83,23 @@
  	                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
  	               </div>
  	               <div class="modal-body">
-												 <strong>Deletar este Produto?</strong>
+												 <strong>Deletar este Produto?  </strong>
  	               </div>
  	               <div class="modal-footer">
-									 		<input type="hidden" name="id" class="form-control id2" required>
- 	                   	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
- 	                  	<button type="submit" class="btn btn-success">Delete</button>
+									 		<input type="hidden" name="id" class="form-control id" required>
+ 	                   	<button type="button" class="btn btn-default btn-close" data-dismiss="modal">Fechar</button>
+ 	                  	<button type="submit" class="btn btn-success btn-danger">Delete</button>
  	               </div>
  	      			</div>
  	        </div>
  	     </div>
  	 </form>
-<script src="../../../public/js/jquery-3.3.1.js"></script>
-<script src="../../../public/js/bootstrap.js"></script>
 
 <script>
     $(document).ready(function(){
 			//showing data to modal for edit record
       $('#mytable').on('click','.edit',function(){
-        var id = $(this).data('id');
+        var id              = $(this).data('id');
         var model           = $(this).data('model');
         var fat_part_no     = $(this).data('fat_part_no');
         var parts_no        = $(this).data('parts_no');
@@ -121,7 +122,21 @@
         
       });
 			//showing modal for delete record
-			
+			$(document).ready(function() {
+        $('#example').DataTable( 
+            {    
+              responsive: true,
+              autoFill: true,
+              "language": {
+                "paginate": {
+                "previous": "Anterior",
+                "next": "Proximo"
+                }
+              }
+            } 
+            
+        );
+      });
 
     });
 </script>

@@ -24,6 +24,8 @@
     "mongodb": "^3.6.6",
     "node-excel-export": "^1.4.4",
     "node-inspect": "^2.0.0",
+    "vue": "^2.6.14",
+    "vuex": "^3.6.2",
     "wordpress": "^1.4.1"
   }
 }

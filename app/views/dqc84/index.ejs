@@ -3,7 +3,11 @@
 <head>
 	<meta charset="utf-8">
 	<title>TELA - DQC84</title>
-  <link href="../../../public/css/bootstrap.css" rel="stylesheet" type="text/css"/></head>
+  <link href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.25/js/dataTables.jqueryui.min.js"></script>
+
 <body>
   <div class="container">
     <h3>Lista de Produtos - DQC84</h3>
@@ -18,7 +22,7 @@
       </form>
       </th>
     </table>
-    <table class="table table-striped" id="mytable">
+    <table id="example" class="display" style="width:100%">
       <thead>
         <tr>
           <th>fat_part_no</th>
@@ -26,7 +30,7 @@
           <th>total_location</th>
           <th>update_dt</th>
           <th>create_dt</th>
-          <th></th>
+          <th>acao</th>
 
         </tr>
       </thead>
@@ -110,8 +114,6 @@
  	     </div>
  	 </form>
 
-<script src="../../../public/js/jquery-3.3.1.js"></script>
-<script src="../../../public/js/bootstrap.js"></script>
 <script>
     $(document).ready(function(){
      
@@ -143,7 +145,21 @@
         
       });
 			//showing modal for delete record
-    
+      $(document).ready(function() {
+        $('#example').DataTable( 
+            {    
+              responsive: true,
+              autoFill: true,
+              "language": {
+                "paginate": {
+                "previous": "Anterior",
+                "next": "Proximo"
+                }
+              }
+            } 
+            
+        );
+      });
 
     });
 </script>
