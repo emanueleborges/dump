@@ -25,23 +25,22 @@
     <table id="example" class="display" style="width:100%">
       <thead>
         <tr>
-          <th>fat_part_no</th>
-          <th>model</th>
-          <th>total_location</th>
-          <th>update_dt</th>
-          <th>create_dt</th>
-          <th>acao</th>
-
+          <th width="5%">fat_part_no</th>
+          <th width="5%">model</th>
+          <th width="5%">total_location</th>
+          <th width="14%">update_dt</th>
+          <th width="14%">create_dt</th>
+          <th width="10%">acao</th>
         </tr>
       </thead>
       <tbody>
          <% for (var cont = 0; cont < results.length; cont++) { %>
         <tr>
-          <td><%=results[cont].fat_part_no %></td>
-          <td><%=results[cont].model %></td>
-          <td><%=results[cont].total_location %></td>
-          <td><%=results[cont].update_dt %></td>
-          <td><%=results[cont].create_dt %></td>
+          <td style="font-size: 12px;"><%=results[cont].fat_part_no %></td>
+          <td style="font-size: 12px;"><%=results[cont].model %></td>
+          <td style="font-size: 12px;"><%=results[cont].total_location %></td>
+          <td style="font-size: 12px;"><%=results[cont].update_dt %></td>
+          <td style="font-size: 12px;"><%=results[cont].create_dt %></td>
           
           <td>
             <a href="javascript:void(0);" class="btn btn-sm btn-info edit" data-toggle="modal" data-target="#myModalAdd" data-fat_part_no="<%=results[cont].fat_part_no %>" data-model="<%=results[cont].model %>" data-total_location="<%=results[cont].total_location %>" " onclick="$('#form-dqc84').attr('action', '/dqc84/salvar?id=<%=results[cont]._id %>');">Editar</a>
@@ -116,6 +115,10 @@
 
 <script>
     $(document).ready(function(){
+
+      $("input[type=text]").keyup(function () {  
+            $(this).val($(this).val().toUpperCase());  
+      }); 
      
 			//showing data to modal for edit record
       $('#mytable').on('click','.edit',function(){

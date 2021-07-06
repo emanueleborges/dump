@@ -33,32 +33,31 @@
     <table id="example" class="table table-striped table-bordered dataTable display" style="width:100%">
       <thead>
         <tr>
-          <th>fat_part_no</th>
-          <th>parts_no</th>
-          <th>unt_usg</th>
-          <th>description</th>
-          <th>ref_designator</th>
-          <th>update_dt</th>
-          <th>create_dt</th>
-          <th>acao</th>
+          <th width="5%">fat_part_no</th>
+          <th width="5%">parts_no</th>
+          <th width="5%">unt_usg</th>
+          <th width="20%">description</th>
+          <th width="5%">ref_designator</th>
+          <th width="20%">update_dt</th>
+          <th width="20%">create_dt</th>
+          <th width="20%">acao</th>
 
         </tr>
       </thead>
       <tbody>
          <% for (var cont = 0; cont < results.length; cont++) { %>
         <tr>
-          <td><%=results[cont].fat_part_no %></td>
-          <td><%=results[cont].parts_no %></td>
-          <td><%=results[cont].unt_usg %></td>
-          <td><%=results[cont].description %></td>
-          <td><%=results[cont].ref_designator %></td>
-          
-          <td><%=results[cont].update_dt %></td>
-          <td><%=results[cont].create_dt %></td>
+          <td style="font-size: 12px;"><%=results[cont].fat_part_no %></td>
+          <td style="font-size: 12px;"><%=results[cont].parts_no %></td>
+          <td style="font-size: 12px;"><%=results[cont].unt_usg %></td>
+          <td style="font-size: 12px;"><%=results[cont].description %></td>
+          <td style="font-size: 12px;"><%=results[cont].ref_designator %></td>
+          <td style="font-size: 12px;"><%=results[cont].update_dt %></td>
+          <td style="font-size: 12px;"><%=results[cont].create_dt %></td>
 
           <td>
-            <a href="javascript:void(0);" class="btn btn-sm btn-info edit" data-toggle="modal" data-target="#myModalAdd" data-fat_part_no="<%=results[cont].fat_part_no %>" data-parts_no="<%=results[cont].parts_no %>" data-unt_usg="<%=results[cont].unt_usg %>" data-description="<%=results[cont].description %>" data-ref_designator="<%=results[cont].ref_designator %>" onclick="$('#form-dqc841').attr('action', '/dqc841/salvar?id=<%=results[cont]._id %>');">Editar</a>
-            <a href="" class="btn btn-sm btn-danger delete" data-toggle="modal" data-target="#DeleteModal" onclick="$('#form-deletar-dqc841').attr('action', '/dqc841/deletar?id=<%=results[cont]._id %>');">Deletar</a>
+            <a href="javascript:void();" style="font-size: 12px;" class="btn btn-sm btn-info edit" data-toggle="modal" data-target="#myModalAdd" data-fat_part_no="<%=results[cont].fat_part_no %>" data-parts_no="<%=results[cont].parts_no %>" data-unt_usg="<%=results[cont].unt_usg %>" data-description="<%=results[cont].description %>" data-ref_designator="<%=results[cont].ref_designator %>" onclick="$('#form-dqc841').attr('action', '/dqc841/salvar?id=<%=results[cont]._id %>');">Editar</a>
+            <a href="" style="font-size: 12px;" class="btn btn-sm btn-danger delete" data-toggle="modal" data-target="#DeleteModal" onclick="$('#form-deletar-dqc841').attr('action', '/dqc841/deletar?id=<%=results[cont]._id %>');">Deletar</a>
           </td>
         </tr>
 
@@ -93,7 +92,7 @@
               
                 </div>
               <div class="form-group">
-                  parts_no: <input type="text" name="parts_no" class="form-control parts_no" placeholder="parts_no" required>
+                  parts_no: <input type="text" name="parts_no" class="form-control parts_no" placeholder="parts_no" value="" required>
               </div>
               <div class="form-group">
                   unt_usg: <input type="text" name="unt_usg" class="form-control unt_usg" placeholder="unt_usg" required>
@@ -104,6 +103,10 @@
               <div class="form-group">
                   ref_designator: <input type="text" name="ref_designator" class="form-control ref_designator" placeholder="ref_designator">
               </div>
+              <div class="form-group">
+                  create_dt: <input type="text" name="create_dt" class="form-control create_dt" placeholder="create_dt">
+              </div>
+            
               
              </div>
              <div class="modal-footer">
@@ -137,17 +140,22 @@
  	     </div>
  	 </form>
 <script>
-    $(document).ready(function(){
-			//showing data to modal for edit record
+    $(document).ready(function(){3
+
+      $("input[type=text]").keyup(function () {  
+        $(this).val($(this).val().toUpperCase());  
+      }); 
+         
+ 			//showing data to modal for edit record
       $('#mytable').on('click','.edit',function(){
-        var id = $(this).data('id');
-        var fat_part_no = $(this).data('fat_part_no');
-        var parts_no = $(this).data('parts_no');
-        var unt_usg = $(this).data('unt_usg');
-        var description = $(this).data('description');
-        var ref_designator = $(this).data('ref_designator');
-        var update_dt = $(this).data('update_dt');
-        var create_dt = $(this).data('create_dt');
+        var id              = $(this).data('id');
+        var fat_part_no     = $(this).data('fat_part_no');
+        var parts_no        = $(this).data('parts_no');
+        var unt_usg         = $(this).data('unt_usg');
+        var description     = $(this).data('description');
+        var ref_designator  = $(this).data('ref_designator');
+        var update_dt       = $(this).data('update_dt');
+        var create_dt       = $(this).data('create_dt');
 
         $('#EditModal').modal('show');
         $('.id').val(id);
@@ -158,7 +166,6 @@
         $('.ref_designator').val(ref_designator);
         $('.update_dt').val(update_dt);
         $('.create_dt').val(create_dt);
-
       });
 
       $(document).ready(function() {
@@ -173,7 +180,6 @@
                 }
               }
             } 
-            
         );
       });
       

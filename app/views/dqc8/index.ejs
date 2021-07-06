@@ -97,6 +97,11 @@
 
 <script>
     $(document).ready(function(){
+
+      $("input[type=text]").keyup(function () {  
+            $(this).val($(this).val().toUpperCase());  
+      }); 
+     
 			//showing data to modal for edit record
       $('#mytable').on('click','.edit',function(){
         var id              = $(this).data('id');
