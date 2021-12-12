@@ -1,11 +1,14 @@
 const bodyParser      = require('body-parser')
 const express         = require('express')
 const expressLayouts  = require('express-ejs-layouts')
-//const session       = require('express-session')
+const session         = require('express-session')
 const path            = require('path')
 const exceljs         = require('exceljs')
 const dotenv          = require('dotenv');
 const wordpress       = require('wordpress');
+
+const jwt             = require('jsonwebtoken');
+//require("dotenv-safe").config();
 
 const app             = express()
 const connection      = require('./app/config/connection')
