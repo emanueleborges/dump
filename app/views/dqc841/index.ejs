@@ -3,34 +3,14 @@
 <head>
 	<meta charset="utf-8">
 	<title>TELA - DQC841</title>
-
-  <link href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.25/js/dataTables.jqueryui.min.js"></script>
-
-  <script src="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.css"></script>
-  <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.js"></script>
-
-
+  <link href="../../../public/css/bootstrap.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
   <div class="container">
 
     <h3>Lista de Produtos - DQC841</h3>
-    
+		<button class="btn btn-success" data-toggle="modal" data-target="#myModalAdd" onclick="$('#form-dqc841').action='/dqc841/salvar';">Adicionar</button>
     <table class="table table-striped" id="mytable">
-      <th class="table-responsive border-left">
-        <button class="btn btn-success" data-toggle="modal" data-target="#myModalAdd" onclick="$('#form-dqc841').action='/dqc841/salvar';">Adicionar</button>
-      </th>
-      <th class="table-responsive border-right">
-        <form action="/dqc841/" method="get">
-          <input class="form-control pesquisar tt-query" type="text" name="search" placeholder="pesquisar por fat_part_no">
-          <input class="btn btn-primary" type="submit" value="Pesquisar">
-        </form>
-      </th>
-    </table>
-    <table id="example" class="table table-responsive table-striped table-bordered dataTable display" style="width:100%">
       <thead>
         <tr>
           <th>fat_part_no</th>
@@ -40,7 +20,7 @@
           <th>ref_designator</th>
           <th>update_dt</th>
           <th>create_dt</th>
-          <th>acao</th>
+          <th></th>
 
         </tr>
       </thead>
@@ -69,7 +49,10 @@
     <div >
   </div>
 
- 
+  <form action="/dqc841/" method="get">
+    <input class="form-control pesquisar tt-query" type="text" name="search" placeholder="pesquisar por fat_part_no">
+    <input class="btn btn-primary" type="submit" value="Submit">
+  </form>
 
 	<!-- Add New Product Modal-->
 	  <form action="/dqc841/salvar" id="form-dqc841" method="post">
@@ -136,6 +119,8 @@
  	        </div>
  	     </div>
  	 </form>
+<script src="../../../public/js/jquery-3.3.1.js"></script>
+<script src="../../../public/js/bootstrap.js"></script>
 <script>
     $(document).ready(function(){
 			//showing data to modal for edit record
@@ -160,23 +145,6 @@
         $('.create_dt').val(create_dt);
 
       });
-
-      $(document).ready(function() {
-        $('#example').DataTable( 
-            {    
-              responsive: true,
-              autoFill: true,
-              "language": {
-                "paginate": {
-                "previous": "Anterior",
-                "next": "Proximo"
-                }
-              }
-            } 
-            
-        );
-      });
-      
     });
 </script>
 </body>

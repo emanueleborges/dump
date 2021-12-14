@@ -3,32 +3,20 @@
 <head>
 	<meta charset="utf-8">
 	<title>TELA - DQC</title>
-  <link href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.25/js/dataTables.jqueryui.min.js"></script>
+  <link href="../../../public/css/bootstrap.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>  
   <div class="container">
 
     <h3>Lista de Produtos - DQC8</h3>
-      <table class="table table-striped" id="mytable">
-      <th class="table-responsive border-left">
-        <button class="btn btn-success my-2 my-sm-0" data-toggle="modal" data-target="#myModalAdd" onclick="$('#form-dqc').action='/dqc8/salvar';">Adicionar</button>
-     </th>
-      <th class="table-responsive border-right">
-        <form action="/dqc8/" method="get">
-          <input class="form-control pesquisar tt-query" type="text" name="search" size="20" placeholder="pesquisar model">
-          <input class="btn btn-primary" type="submit" value="Pesquisar">
-      </form>
-      </th>
-    </table>
-    <table id="example" class="table table-responsive table-striped table-bordered dataTable display" style="width:100%">
+		<button class="btn btn-success" data-toggle="modal" data-target="#myModalAdd" onclick="$('#form-dqc').action='/dqc8/salvar';">Adicionar</button>
+    <table class="table table-striped" id="mytable">
       <thead>
         <tr>
           <th>model</th>
-          <th>acao</th>
-       </tr>
+          <th></th>
+
+        </tr>
       </thead>
       <tbody>
          <% for (var cont = 0; cont < results.length; cont++) { %>
@@ -44,7 +32,10 @@
     </table>
   </div>
 
-  
+  <form action="/dqc8/" method="get">
+      <input class="form-control pesquisar tt-query" type="text" name="search" placeholder="pesquisar model">
+      <input class="btn btn-primary" type="submit" value="Submit">
+  </form>
 
 	<!-- Add New Product Modal-->
 	  <form action="/dqc8/salvar" id="form-dqc" method="post">
@@ -83,23 +74,25 @@
  	                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
  	               </div>
  	               <div class="modal-body">
-												 <strong>Deletar este Produto?  </strong>
+												 <strong>Deletar este Produto?</strong>
  	               </div>
  	               <div class="modal-footer">
-									 		<input type="hidden" name="id" class="form-control id" required>
- 	                   	<button type="button" class="btn btn-default btn-close" data-dismiss="modal">Fechar</button>
- 	                  	<button type="submit" class="btn btn-success btn-danger">Delete</button>
+									 		<input type="hidden" name="id" class="form-control id2" required>
+ 	                   	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+ 	                  	<button type="submit" class="btn btn-success">Delete</button>
  	               </div>
  	      			</div>
  	        </div>
  	     </div>
  	 </form>
+<script src="../../../public/js/jquery-3.3.1.js"></script>
+<script src="../../../public/js/bootstrap.js"></script>
 
 <script>
     $(document).ready(function(){
 			//showing data to modal for edit record
       $('#mytable').on('click','.edit',function(){
-        var id              = $(this).data('id');
+        var id = $(this).data('id');
         var model           = $(this).data('model');
         var fat_part_no     = $(this).data('fat_part_no');
         var parts_no        = $(this).data('parts_no');
@@ -122,21 +115,7 @@
         
       });
 			//showing modal for delete record
-			$(document).ready(function() {
-        $('#example').DataTable( 
-            {    
-              responsive: true,
-              autoFill: true,
-              "language": {
-                "paginate": {
-                "previous": "Anterior",
-                "next": "Proximo"
-                }
-              }
-            } 
-            
-        );
-      });
+			
 
     });
 </script>
