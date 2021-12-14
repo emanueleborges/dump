@@ -21,9 +21,10 @@
     "express-paginate": "^1.0.2",
     "express-session": "^1.17.1",
     "hbs": "^4.1.2",
-    "mongodb": "^3.6.6",
+    "mongodb": "^3.7.3",
     "node-excel-export": "^1.4.4",
     "node-inspect": "^2.0.0",
+    "update-mongo": "^0.0.4",
     "vue": "^2.6.14",
     "vuex": "^3.6.2",
     "wordpress": "^1.4.1"
