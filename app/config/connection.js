@@ -11,7 +11,8 @@ module.exports = {
   connectToServer: function( callback ) {
     //mongoose.connect("paste db link", {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });
     //{ useUnifiedTopology: true } 
-    MongoClient.connect( url,  { useUnifiedTopology: true, useNewUrlParser: true }, function( err, client ) {
+
+    const connect = MongoClient.connect( url, { useUnifiedTopology: true },  function( err, client ) {
         if (err == null) {
             _db  = client.db('dump');
             return callback( 'Database conectada MongoDB' );
@@ -25,6 +26,8 @@ module.exports = {
             return callback( err );
         }
     } );
+
+    console.log (connect)
   },
 
   getDb: function() {
