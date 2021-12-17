@@ -14,24 +14,16 @@ module.exports = {
 
     const connect = MongoClient.connect( url, { useUnifiedTopology: true },  function( err, client ) {
         if (err == null) {
-            _db  = client.db('Dump');
+            _db  = client.db('dump');
             return callback( 'Database conectada MongoDB' );
         } else {
-           _db.createCollection("DqcModel", function(err, res) {
+
+          _db.createCollection("dump", function(err, res) {
             if (err) throw err;
             console.log("DataBase criada!");
-            _db.close();
+            _db.close()
           });
-          _db.createCollection("Dqc84", function(err, res) {
-            if (err) throw err;
-            console.log("DataBase criada!");
-            _db.close();
-          });
-          _db.createCollection("Dqc841", function(err, res) {
-            if (err) throw err;
-            console.log("DataBase criada!");
-            _db.close();
-          });
+         
 
             return callback( err );
         }
